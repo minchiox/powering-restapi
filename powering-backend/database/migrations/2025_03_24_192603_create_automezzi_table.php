@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('targa')->unique();
             $table->string('marca');
             $table->string('modello');
-            $table->foreignId('filiali_id')->constrained("filiali")->onDelete('cascade');
+            $table->foreignId('filiale_id')->constrained("filiali")->onDelete('cascade');
             $table->timestamps();
         });
     }
