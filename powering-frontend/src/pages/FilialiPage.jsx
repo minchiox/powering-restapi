@@ -49,6 +49,21 @@ export default function FilialiPage() {
     }
   };
 
+    const handlePostFiliali = async () => {
+      try {
+        await axios.post("/exercises/Filiale/upload.json", payload);
+        alert("Filiali inviati con successo!");
+      } catch (error) {
+        console.error("Errore durante il POST degli Filiali:", error);
+        alert("Errore durante l'invio degli Filiali.");
+      }
+    };
+  
+    const payload = {
+      email: "capuzzimatimichele06@gmail.com", 
+      data: filiali
+    };
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Filiali List</h1>
@@ -61,7 +76,7 @@ export default function FilialiPage() {
       />
       <button onClick={handleSearch} className="bg-blue-500 text-white px-4 py-2">Search</button>
       <button onClick={fetchFiliali} className="bg-blue-500 text-white px-4 py-2 ml-2">List</button>
-
+      <button onClick={handlePostFiliali} className="bg-yellow-500 text-white px-4 py-2 ml-2">POST</button>
       <ul className="mt-4">
         {filiali.map((filiale) => (
           <li key={filiale.id} className="border p-2 flex justify-between items-center">

@@ -49,6 +49,22 @@ export default function AutomezziPage() {
     }
   };
 
+  const handlePostAutomezzi = async () => {
+    try {
+      await axios.post("/exercises/Automezzo/upload.json", payload);
+      alert("Automezzi inviati con successo!");
+    } catch (error) {
+      console.error("Errore durante il POST degli Automezzi:", error);
+      alert("Errore durante l'invio degli Automezzi.");
+    }
+  };
+
+  const payload = {
+    email: "capuzzimatimichele06@gmail.com", 
+    data: automezzi
+  };
+  
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Automezzi List</h1>
@@ -61,6 +77,7 @@ export default function AutomezziPage() {
       />
       <button onClick={handleSearch} className="bg-blue-500 text-white px-4 py-2">Search</button>
       <button onClick={fetchAutomezzi} className="bg-blue-500 text-white px-4 py-2">List</button>
+      <button  onClick={handlePostAutomezzi} className="bg-yellow-500 text-white px-4 py-2 ml-2">POST</button>
       <ul className="mt-4">
         {automezzi.map((auto) => (
           <li key={auto.id} className="border p-2 flex justify-between items-center">
